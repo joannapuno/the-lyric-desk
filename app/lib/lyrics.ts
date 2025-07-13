@@ -4,5 +4,8 @@ export const fetchLyrics = async (artist: string, title: string): Promise<string
     throw new Error('Lyrics not found');
   }
   const data = await res.json();
-  return data.lyrics;
+  return data.lyrics
+  .trim()
+  .replace(/\r\n/g, '\n')
+  .replace(/\n{3,}/g, '\n');
 };

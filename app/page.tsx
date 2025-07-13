@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 import { fetchLyrics } from '@/lib/lyrics'
+import AppInput from './components/AppInput'
+import AppButton from './components/AppButton'
+import WindowsContent from './components/WindowsContent'
 
 export default function Home() {
   const [artist, setArtist] = useState('')
@@ -10,7 +13,9 @@ export default function Home() {
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const onClick = async () => {
+  const onClick = async (evt) => {
+    evt.preventDefault()
+
     setCopied(false)
     setLyrics('')
     setError('')
@@ -32,29 +37,34 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <input
-        placeholder="Song Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        placeholder="Artist"
-        value={artist}
-        onChange={(e) => setArtist(e.target.value)}
-      />
-      <button onClick={onClick}>Get Lyrics</button>
+    <main className='h-full grid grid-cols-2 justify-center'>
+      {/* Form */}
+      <section>
+        <h1 className='text-6xl'>The Lyric Desk</h1>
+        <form>
+          <AppInput
+            label="Song Title"
+            placeholder="Mr. Brightside"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <AppInput
+            label="Artist / Band"
+            placeholder="The Killers"
+            value={artist}
+            onChange={(e) => setArtist(e.target.value)}
+          />
+          <AppButton label="Show Lyrics" onClick={onClick} />
+        </form>
+      </section>
 
-      {error && <p>{error}</p>}
+      <WindowsContent title={`"${title}" by ${artist || 'Unknown Artist'}`}>
+        {lyrics}
+      </WindowsContent>
 
-      {lyrics && (
-        <div>
-          <pre>{lyrics}</pre>
-          <button onClick={copyToClipboard}>
-            {copied ? 'Copied!' : 'Copy to Clipboard'}
-          </button>
-        </div>
-      )}
-    </div>
+
+      {/* TODO: handle laterz */}
+      {/* {error && <p>{error}</p>} */}
+    </main>
   )
 }
