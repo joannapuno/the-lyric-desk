@@ -17,6 +17,13 @@ This app uses the [lyrics.ovh API](https://lyricsovh.docs.apiary.io/#) to fetch 
 - API Endpoint: `https://api.lyrics.ovh/v1/:artist/:title`
 - No API key required
 
+## 🛠 Tech Stack
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Font Awesome
+
 ## 🚀 Getting Started
 
 1. Clone the repo
