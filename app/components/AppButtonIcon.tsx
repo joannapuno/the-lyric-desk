@@ -5,7 +5,7 @@ import { IconDefinition } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { ButtonHTMLAttributes } from "react"
 
-type Props = {
+type AppButtonIconProps = {
   label: string
   icon: IconDefinition
   showLabel?:boolean
@@ -13,7 +13,7 @@ type Props = {
   iconClass?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function AppButtonIcon({ label, icon, showLabel = false, size = "1x", iconClass = "", ...attrs }: Props) {
+export default function AppButtonIcon({ label, icon, showLabel = false, size = "1x", iconClass = "", ...attrs }: AppButtonIconProps) {
   return (
     <button
       aria-label={label}

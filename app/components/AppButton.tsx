@@ -2,12 +2,12 @@
 
 import type { ButtonHTMLAttributes } from "react"
 
-type Props = {
+type AppButtonProps = {
   label: string
   type?: "button" | "submit"
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function AppButton({ label, type = "button", disabled, ...attrs }: Props) {
+export default function AppButton({ label, type = "button", disabled, ...attrs }: AppButtonProps) {
   const baseStyles =
     "px-4 py-2 rounded border-2 border-purple-400 text-white shadow-sm transition-all"
   const enabledStyles =

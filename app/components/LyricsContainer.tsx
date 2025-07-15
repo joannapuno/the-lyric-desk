@@ -7,7 +7,7 @@ import AppSpinner from "./AppSpinner"
 import AppButtonIcon from "./AppButtonIcon"
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons/faFolderOpen"
 
-type Props = {
+type LyricsContainerProps = {
   children: ReactNode
   onCopy: () => void
   isCopied?: boolean
@@ -18,7 +18,7 @@ type Props = {
   loading?: boolean
 }
 
-export default function WindowsContent({
+export default function LyricsContainer({
   children,
   title = "",
   artist = "",
@@ -27,7 +27,7 @@ export default function WindowsContent({
   loading = false,
   onCopy = () => {},
   isCopied = false
-}: Props) {
+}: LyricsContainerProps) {
   const showFallback = noSearchValue || noResultFound
 
   return (

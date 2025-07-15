@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { fetchLyrics } from "@/lib/lyrics"
-import AppInput from "./components/AppInput"
-import AppButton from "./components/AppButton"
-import WindowsContent from "./components/WindowsContent"
+import LyricsContainer from "./components/LyricsContainer"
 import AppButtonIcon from "./components/AppButtonIcon"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import AppLink from "./components/AppLink"
-import { faCloudSun, faCloudMoon, faMusic, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons"
+import { faCloudSun, faCloudMoon } from "@fortawesome/free-solid-svg-icons"
+import TitleArtistForm from "./components/TitleArtistForm"
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("dark")
@@ -16,13 +15,12 @@ export default function Home() {
   const [title, setTitle] = useState<string>("")
   const [lyrics, setLyrics] = useState<string>("")
   const [error, setError] = useState<string>("")
-  const [copied, setCopied] = useState<boolean>(false)
   const [noSearchValue, setNoSearchValue] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
-
+  const [copied, setCopied] = useState<boolean>(false)
+  
   const noResultFound = error !== ""
-
-  const onClick = async (evt: React.FormEvent) => {
+  const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault()
     setLoading(true)
     setCopied(false)
@@ -39,6 +37,7 @@ export default function Home() {
       setLoading(false)
     }
   }
+  
 
   const copyToClipboard = async () => {
     try {
@@ -68,50 +67,34 @@ export default function Home() {
 
   return (
     <main className="py-2 px-[2rem]">
-      <div>
-        <div className='flex gap-4'>
-          <AppButtonIcon 
-            label="Switch Mode" 
-            icon={(theme === "dark" ? faCloudSun : faCloudMoon)} 
-            className="cursor-pointer"
-            onClick={toggleThemeMode} />
-          <AppLink 
-            label="Github Repository"
-            title='Github Repository'
-            href="https://github.com/joannapuno/the-lyric-desk" 
-            icon={faGithub} 
-            className="cursor-pointer"
-            target="_blank"
-            rel="noopener noreferrer" />
-        </div>
+      <div className='flex gap-4'>
+        <AppButtonIcon 
+          label="Switch Mode" 
+          icon={(theme === "dark" ? faCloudSun : faCloudMoon)} 
+          className="cursor-pointer"
+          onClick={toggleThemeMode} />
+        <AppLink 
+          label="Github Repository"
+          title='Github Repository'
+          href="https://github.com/joannapuno/the-lyric-desk" 
+          icon={faGithub} 
+          className="cursor-pointer"
+          target="_blank"
+          rel="noopener noreferrer" />
       </div>
       <div className='grid py-4 1xl:py-0 1xl:grid-cols-2 gap-[5rem] justify-items-center items-center'>
         <section className="w-full max-w-[30rem] 3xl:justify-self-end">
           <h1 className="text-6xl mb-5">The Lyric Desk</h1>
-          <form className="flex flex-col gap-[1rem]" onSubmit={onClick}>
-            <AppInput
-              label="Song Title"
-              leadingIcon={faMusic}
-              placeholder="Yellow"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <AppInput
-              label="Artist / Band"
-              leadingIcon={faMicrophoneLines}
-              placeholder="Coldplay"
-              value={artist}
-              onChange={(e) => setArtist(e.target.value)}
-            />
-            <AppButton
-              label="Show Lyrics"
-              type="submit"
-              disabled={!title || !artist}
-            />
-          </form>
+          <TitleArtistForm
+            title={title}
+            artist={artist}
+            setTitle={setTitle}
+            setArtist={setArtist}
+            handleSubmit={handleSubmit}
+          />
         </section>
 
-        <WindowsContent
+        <LyricsContainer
           title={title}
           artist={artist}
           onCopy={copyToClipboard}
@@ -121,8 +104,7 @@ export default function Home() {
           loading={loading}
         >
           {lyrics}
-        </WindowsContent>
-
+        </LyricsContainer>
       </div>
 
       <AppLink 
