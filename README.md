@@ -5,6 +5,8 @@ Let your favorite songs whisper their verses into your screen._
 
 ---
 
+🔗 [Demo](https://the-lyric-desk-oicb94g4w-joanna-punos-projects-e076f681.vercel.app/)
+
 ## ✨ What is this?
 
 The Lyric Desk is a straightforward lyrics generator.  
