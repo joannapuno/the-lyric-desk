@@ -119,7 +119,6 @@ export default function Home() {
           noResultFound={noResultFound}
           noSearchValue={noSearchValue}
           loading={loading}
-          error={error}
         >
           {lyrics}
         </WindowsContent>
