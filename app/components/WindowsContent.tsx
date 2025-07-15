@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
-import { faCopy } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import AppSpinner from './AppSpinner'
-import AppButtonIcon from './AppButtonIcon'
-import { faFolderOpen } from '@fortawesome/free-regular-svg-icons/faFolderOpen'
+import { ReactNode } from "react"
+import { faCopy } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import AppSpinner from "./AppSpinner"
+import AppButtonIcon from "./AppButtonIcon"
+import { faFolderOpen } from "@fortawesome/free-regular-svg-icons/faFolderOpen"
 
 type Props = {
   children: ReactNode
@@ -20,8 +20,8 @@ type Props = {
 
 export default function WindowsContent({
   children,
-  title = '',
-  artist = '',
+  title = "",
+  artist = "",
   noResultFound = false,
   noSearchValue = true,
   loading = false,
@@ -47,7 +47,7 @@ export default function WindowsContent({
 
         {children && title && artist && (
           <AppButtonIcon
-            label={isCopied ? 'Copied!' : 'Copy'}
+            label={isCopied ? "Copied!" : "Copy"}
             showLabel
             onClick={onCopy}
             icon={faCopy}

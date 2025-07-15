@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { SizeProp } from '@fortawesome/fontawesome-svg-core'
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { AnchorHTMLAttributes } from 'react'
+import { SizeProp } from "@fortawesome/fontawesome-svg-core"
+import { IconDefinition } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { AnchorHTMLAttributes } from "react"
 
 type Props = {
   label: string
@@ -14,7 +14,7 @@ type Props = {
   iconClass?: string
 } & AnchorHTMLAttributes<HTMLAnchorElement>
 
-export default function AppLink({ label, href, icon, showLabel = false, size = '1x', iconClass = '', ...attrs }: Props) {
+export default function AppLink({ label, href, icon, showLabel = false, size = "1x", iconClass = "", ...attrs }: Props) {
   return (
     <a
       {...attrs}

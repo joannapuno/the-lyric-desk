@@ -1,40 +1,40 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { fetchLyrics } from '@/lib/lyrics'
-import AppInput from './components/AppInput'
-import AppButton from './components/AppButton'
-import WindowsContent from './components/WindowsContent'
-import AppButtonIcon from './components/AppButtonIcon'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import AppLink from './components/AppLink'
-import { faCloudSun, faCloudMoon, faMusic, faMicrophoneLines } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from "react"
+import { fetchLyrics } from "@/lib/lyrics"
+import AppInput from "./components/AppInput"
+import AppButton from "./components/AppButton"
+import WindowsContent from "./components/WindowsContent"
+import AppButtonIcon from "./components/AppButtonIcon"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import AppLink from "./components/AppLink"
+import { faCloudSun, faCloudMoon, faMusic, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons"
 
 export default function Home() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
-  const [artist, setArtist] = useState<string>('')
-  const [title, setTitle] = useState<string>('')
-  const [lyrics, setLyrics] = useState<string>('')
-  const [error, setError] = useState<string>('')
+  const [theme, setTheme] = useState<"light" | "dark">("dark")
+  const [artist, setArtist] = useState<string>("")
+  const [title, setTitle] = useState<string>("")
+  const [lyrics, setLyrics] = useState<string>("")
+  const [error, setError] = useState<string>("")
   const [copied, setCopied] = useState<boolean>(false)
   const [noSearchValue, setNoSearchValue] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const noResultFound = error !== ''
+  const noResultFound = error !== ""
 
   const onClick = async (evt: React.FormEvent) => {
     evt.preventDefault()
     setLoading(true)
     setCopied(false)
-    setLyrics('')
-    setError('')
+    setLyrics("")
+    setError("")
     setNoSearchValue(false)
 
     try {
       const data = await fetchLyrics(artist, title)
       setLyrics(data)
     } catch {
-      setError('Lyrics not found')
+      setError("Lyrics not found")
     } finally {
       setLoading(false)
     }
@@ -50,17 +50,17 @@ export default function Home() {
   }
 
   const toggleThemeMode = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    const newTheme = theme === "dark" ? "light" : "dark"
     setTheme(newTheme)
     document.body.classList.remove(theme)
     document.body.classList.add(newTheme)
-    localStorage.setItem('theme', newTheme)
+    localStorage.setItem("theme", newTheme)
   }
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const initialTheme = savedTheme || (prefersDark ? "dark" : "light")
 
     setTheme(initialTheme)
     document.body.classList.add(initialTheme)
@@ -72,7 +72,7 @@ export default function Home() {
         <div className='flex gap-4'>
           <AppButtonIcon 
             label="Switch Mode" 
-            icon={(theme === 'dark' ? faCloudSun : faCloudMoon)} 
+            icon={(theme === "dark" ? faCloudSun : faCloudMoon)} 
             className="cursor-pointer"
             onClick={toggleThemeMode} />
           <AppLink 
@@ -105,7 +105,7 @@ export default function Home() {
             />
             <AppButton
               label="Show Lyrics"
-              type='submit'
+              type="submit"
               disabled={!title || !artist}
             />
           </form>

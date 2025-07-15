@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { SizeProp } from '@fortawesome/fontawesome-svg-core'
-import { IconDefinition } from '@fortawesome/free-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { ButtonHTMLAttributes } from 'react'
+import { SizeProp } from "@fortawesome/fontawesome-svg-core"
+import { IconDefinition } from "@fortawesome/free-regular-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { ButtonHTMLAttributes } from "react"
 
 type Props = {
   label: string
@@ -13,7 +13,7 @@ type Props = {
   iconClass?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export default function AppButtonIcon({ label, icon, showLabel = false, size = '1x', iconClass = '', ...attrs }: Props) {
+export default function AppButtonIcon({ label, icon, showLabel = false, size = "1x", iconClass = "", ...attrs }: Props) {
   return (
     <button
       aria-label={label}
