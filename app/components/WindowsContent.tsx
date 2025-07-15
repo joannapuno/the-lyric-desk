@@ -1,11 +1,11 @@
 'use client'
 
 import { ReactNode } from 'react'
-import { faFolderOpen, faCopy } from '@fortawesome/free-regular-svg-icons'
-import { faMusic } from '@fortawesome/free-solid-svg-icons'
+import { faCopy } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AppSpinner from './AppSpinner'
 import AppButtonIcon from './AppButtonIcon'
+import { faFolderOpen } from '@fortawesome/free-regular-svg-icons/faFolderOpen'
 
 type Props = {
   children: ReactNode
@@ -16,7 +16,6 @@ type Props = {
   noResultFound?: boolean
   noSearchValue?: boolean
   loading?: boolean
-  error?: string
 }
 
 export default function WindowsContent({
@@ -27,13 +26,12 @@ export default function WindowsContent({
   noSearchValue = true,
   loading = false,
   onCopy = () => {},
-  isCopied = false,
-  error = '',
+  isCopied = false
 }: Props) {
   const showFallback = noSearchValue || noResultFound
 
   return (
-    <section className="grid grid-rows-[auto_1fr] 3xl:justify-self-start bg-pink-200 dark:bg-purple-400 border-2 border-purple-100 shadow-md rounded-md w-full max-w-[50rem] h-[90vh] overflow-hidden">
+    <section className="grid grid-rows-[auto_1fr] 3xl:justify-self-start bg-pink-200 dark:bg-[var(--container)] backdrop-blur-[2px] border-2 border-purple-100 shadow-md rounded-md w-full max-w-[50rem] h-[90vh] overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between bg-purple-100 border-b-2 border-purple-100 px-4 py-2">
         <h2 className="text-2xl font-bold text-purple-900">
@@ -43,7 +41,7 @@ export default function WindowsContent({
               <span className="capitalize"> {artist}</span>
             </>
           ) : (
-            <FontAwesomeIcon icon={faMusic} size="1x" />
+            <>Enter song and artist</>
           )}
         </h2>
 
@@ -63,13 +61,8 @@ export default function WindowsContent({
         <div className="flex items-center justify-center h-full">
           <AppSpinner />
         </div>
-      ) : error ? (
-        <div className="flex flex-col justify-center items-center p-4 text-center text-purple-900 text-[1.3rem]">
-          <p>A hiccup in the harmony.</p>
-          <p>Let&apos;s rewind and retry.</p>
-        </div>
       ) : showFallback ? (
-        <div className="flex flex-col justify-center items-center p-4 overflow-y-auto scrollbar text-purple-900 text-[1.3rem] text-center">
+        <div className="flex flex-col justify-center items-center p-4 overflow-y-auto scrollbar text-purple-100 text-[1.3rem] text-center">
           {noSearchValue && (
             <>
               <FontAwesomeIcon icon={faFolderOpen} size="5x" className="mb-5 text-white" />
@@ -85,7 +78,7 @@ export default function WindowsContent({
           )}
         </div>
       ) : (
-        <div className="text-purple-900 p-4 overflow-y-auto h-[90vh] scrollbar">
+        <div className="text-purple-100 p-4 overflow-y-auto h-[90vh] scrollbar">
           <p className="text-[1.25rem] whitespace-pre-wrap">{children}</p>
         </div>
       )}
