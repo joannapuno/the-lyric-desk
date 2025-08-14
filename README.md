@@ -5,7 +5,7 @@ Let your favorite songs whisper their verses into your screen._
 
 ---
 
-🔗 [Demo](https://the-lyric-desk-oicb94g4w-joanna-punos-projects-e076f681.vercel.app/)
+🔗 [Demo link for Vercel](https://the-lyric-desk.vercel.app/)
 
 ## ✨ What is this?
 
